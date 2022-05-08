@@ -4,37 +4,39 @@
   <!--    <router-link to="/about">About</router-link>-->
   <!--  </div>-->
   <!--  <router-view/>-->
-  <div class="app">
+  <div class="app" v-if="$route.path !=='/signin'">
     <Navbar></Navbar>
     <Header></Header>
 
     <main class="main">
-
       <router-view></router-view>
-
     </main>
 
     <Footer></Footer>
   </div>
+  <router-view name="signIn" v-else></router-view>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
 <script>
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
 import Main from "@/views/Main";
 import Footer from "@/components/Footer";
 
+import { mapState } from "vuex";
+
 export default {
   components: {
     Footer,
     Main,
     Navbar,
-    Header
-  }
-}
+    Header,
+  },
+  computed: {
+    ...mapState(["isAuth"]),
+  },
+};
 </script>
 
 <style lang="scss">
@@ -109,9 +111,10 @@ img {
 
 .app {
   display: grid;
-  grid-template-areas: "nav head"
-                       "nav main"
-                       "nav foot";
+  grid-template-areas:
+    "nav head"
+    "nav main"
+    "nav foot";
   width: 100%;
   height: 100vh;
   grid-template-rows: 81px 1fr auto;

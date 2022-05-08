@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
     <div class="footer__wrapper" v-if="currentTrack">
-      <div class="album__wrapper" >
-        <div class="album__icon">
-          <img class="album__img" v-bind:src="currentTrack.img" alt="album img">
+      <div class="album__wrapper">
+        <div class="album__icon" :style="testImage">
+          <!-- <img class="album__img" v-bind:src="currentTrack.img" alt="album img"> -->
         </div>
         <div class="album__about">
           <p class="album__name">{{ currentTrack.name }}</p>
@@ -20,8 +20,14 @@
 
         <button class="player__controls-btn" @click="play">
           <svg class="player__controls-play" width="14" height="20">
-            <use xlink:href="../../src/assets/sprite.svg#player-play" v-if="isTimerPlaying" ></use>
-            <use xlink:href="../../src/assets/sprite.svg#player-pause" v-else></use>
+            <use
+              xlink:href="../../src/assets/sprite.svg#player-play"
+              v-if="isTimerPlaying"
+            ></use>
+            <use
+              xlink:href="../../src/assets/sprite.svg#player-pause"
+              v-else
+            ></use>
           </svg>
         </button>
 
@@ -36,7 +42,10 @@
         <div class="player__progress-time">{{ currentTime }}</div>
 
         <div class="player__progress-bar" @click="clickProgress">
-          <div class="player__progress-current" :style="{ width: barWidth}"></div>
+          <div
+            class="player__progress-current"
+            :style="{ width: barWidth }"
+          ></div>
         </div>
 
         <div class="player__progress-duration">{{ duration }}</div>
@@ -51,7 +60,9 @@
 
         <button class="player__controls-btn">
           <svg class="player__controls-random" width="24" height="23">
-            <use xlink:href="../../src/assets/sprite.svg#player-favorites"></use>
+            <use
+              xlink:href="../../src/assets/sprite.svg#player-favorites"
+            ></use>
           </svg>
         </button>
       </div>
@@ -75,17 +86,24 @@ export default {
         {
           name: "Believer",
           artist: "Imagine Dragons",
-          img: require('../assets/music-img/imagine-dragons.jpg'),
-          source: require('../assets/music/ImagineDragons-Believer.mp3'),
+          img: require("../assets/music-img/imagine-dragons.jpg"),
+          source: require("../assets/music/ImagineDragons-Believer.mp3"),
         },
         {
           name: "Heathens",
           artist: "twenty one pilots",
-          img: require('../assets/music-img/player-icon.jpg'),
-          source: require('../assets/music/twenty one pilots - Heathens.mp3'),
-        }
-      ]
-    }
+          img: require("../assets/music-img/player-icon.jpg"),
+          source: require("../assets/music/twenty one pilots - Heathens.mp3"),
+        },
+      ],
+    };
+  },
+  computed: {
+    testImage() {
+      return {
+        backgroundImage: `url(${this.currentTrack.img})`,
+      };
+    },
   },
   methods: {
     play() {
@@ -174,29 +192,27 @@ export default {
   },
 
   created() {
-    let vm = this;
     this.currentTrack = this.tracks[0];
     this.audio = new Audio();
     this.audio.src = this.currentTrack.source;
-    this.audio.ontimeupdate = function() {
-      vm.generateTime();
+    this.audio.ontimeupdate = () => {
+      this.generateTime();
     };
-    this.audio.onloadedmetadata = function() {
-      vm.generateTime();
+    this.audio.onloadedmetadata = () => {
+      this.generateTime();
     };
-    this.audio.onended = function() {
-      vm.nextTrack();
+    this.audio.onended = () => {
+      this.nextTrack();
       this.isTimerPlaying = true;
     };
-  }
-
-}
+  },
+};
 </script>
 
 <style scoped lang="scss">
 .footer {
   grid-area: foot;
-  background: #0F1E36;
+  background: #0f1e36;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 
@@ -211,19 +227,16 @@ export default {
     border-radius: 65px;
     padding: 0 42px;
   }
-
 }
 
 .album {
   &__about {
     margin: 0 auto;
-
   }
 
   &__icon {
-
   }
-  &__wrapper{
+  &__wrapper {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -244,7 +257,7 @@ export default {
     line-height: 25px;
     letter-spacing: 0em;
     text-align: left;
-    color: #76CCFB;
+    color: #76ccfb;
   }
 
   &__track {
@@ -256,7 +269,7 @@ export default {
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
-    color: #76CCFB;
+    color: #76ccfb;
   }
 }
 
@@ -271,7 +284,6 @@ export default {
     &--mod {
       grid-template-columns: repeat(2, 1fr);
       margin: 0 auto;
-
     }
 
     &-btn {
@@ -279,15 +291,12 @@ export default {
     }
 
     &-prev {
-
     }
 
     &-play {
-
     }
 
     &-next {
-
     }
   }
 
@@ -299,7 +308,7 @@ export default {
     &-bar {
       width: 350px;
       height: 6px;
-      background: #FFFFFF;
+      background: #ffffff;
       cursor: pointer;
       border-radius: 10px;
       position: relative;
@@ -322,7 +331,7 @@ export default {
       height: inherit;
       border-radius: 10px;
 
-      background: #76CCFB;
+      background: #76ccfb;
     }
 
     &-duration {
@@ -336,8 +345,6 @@ export default {
 
       opacity: 0.5;
     }
-
-
   }
 }
 </style>

@@ -71,12 +71,13 @@ export default {
       });
     },
   },
+  beforeRouteLeave(to, from) {
+    this.$store.commit("setAuth", false);
+  },
 };
 </script>
 
 <style scoped lang="scss">
-
-
 .track {
   color: azure;
   font-size: 18px;
