@@ -8,16 +8,17 @@
       </svg>
 
       <div class="user__wrapper">
-        <button class="user__btn user__sign-in">Sign in</button>
-        <button class="user__btn user__sign-up">Sign up</button>
+        <router-link to="/signin" class="user__btn " >Sign in</router-link>
       </div>
     </div>
 
     <ul class="navbar__list">
       <li class="navbar__item">
-        <a href="#" class="navbar__link navbar__link--active">Home</a>
+        <router-link active-class="active" to="/" class="navbar__link">Home</router-link>
       </li>
-
+      <li class="navbar__item">
+        <router-link active-class="active" to="/playlist" class="navbar__link">My Playlist</router-link>
+      </li>
       <li class="navbar__item">
         <a href="#" class="navbar__link">Radio</a>
       </li>
@@ -81,12 +82,13 @@ export default {}
     text-align: left;
     color: #76CCFB;
     transition: all 0.5s ease-in-out;
-
-    &--active {
-      transition: all 0.5s ease-in-out;
-      color: #FFFFFF;
-    }
   }
+}
+
+.active {
+  transition: all 0.5s ease-in-out;
+  color: #FFFFFF;
+
 }
 
 .user {
@@ -111,22 +113,29 @@ export default {}
 
     color: #76CCFB;
     position: relative;
-
-    &:not(:last-child) {
-      margin-right: 10px;
-    }
-
-    &:first-child {
-      &:after {
-        content: '/';
-        position: absolute;
-        width: 1px;
-        height: 100%;
-        top: 50%;
-        right: -4px;
-        transform: translate(0%, -50%);
+    transition: all 0.5s ease-in-out;
+    @media(any-hover: hover) {
+      &:hover {
+        transition: all 0.5s ease-in-out;
+        color: #ffffff;
       }
     }
+
+    //&:not(:last-child) {
+    //  margin-right: 10px;
+    //}
+
+    //&:first-child {
+    //  &:after {
+    //    content: '/';
+    //    position: absolute;
+    //    width: 1px;
+    //    height: 100%;
+    //    top: 50%;
+    //    right: -4px;
+    //    transform: translate(0%, -50%);
+    //  }
+    //}
   }
 }
 </style>

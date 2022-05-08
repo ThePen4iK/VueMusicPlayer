@@ -57,7 +57,8 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
   gap: 30px;
   align-items: center;
 

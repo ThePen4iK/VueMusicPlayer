@@ -7,7 +7,13 @@
   <div class="app">
     <Navbar></Navbar>
     <Header></Header>
-    <Main></Main>
+
+    <main class="main">
+
+      <router-view></router-view>
+
+    </main>
+
     <Footer></Footer>
   </div>
 </template>
@@ -18,7 +24,7 @@
 <script>
 import Header from "@/components/Header";
 import Navbar from "@/components/Navbar";
-import Main from "@/components/Main";
+import Main from "@/views/Main";
 import Footer from "@/components/Footer";
 
 export default {
@@ -31,12 +37,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 * {
   padding: 0px;
   margin: 0px;
   border: 0px;
 }
+
 *,
 *:before,
 *:after {
@@ -44,14 +51,17 @@ export default {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 :focus,
 :active {
   outline: none;
 }
+
 a:focus,
 a:active {
   outline: none;
 }
+
 aside,
 nav,
 footer,
@@ -59,6 +69,7 @@ header,
 section {
   display: block;
 }
+
 html,
 body {
   height: 100%;
@@ -69,27 +80,34 @@ body {
 input::-ms-clear {
   display: none;
 }
+
 button {
   cursor: pointer;
 }
+
 button::-moz-focus-inner {
   padding: 0;
   border: 0;
 }
+
 a,
 a:visited {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: none;
 }
+
 ul li {
   list-style: none;
 }
+
 img {
   vertical-align: top;
 }
-.app{
+
+.app {
   display: grid;
   grid-template-areas: "nav head"
                        "nav main"
@@ -100,4 +118,16 @@ img {
   grid-template-columns: 285px 1fr;
 }
 
+.main {
+  grid-area: main;
+  background: #0f1e36;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
 </style>
