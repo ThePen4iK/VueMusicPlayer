@@ -9,18 +9,18 @@
           </svg>
         </div>
       </div>
-      <form action="#" class="form">
+      <form action="#" class="form" autocomplete="off">
         <div class="form__auth">
           <h1 class="form__title">Login</h1>
           <div class="form__wrapper">
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
-              <input type="text" class="form__input" placeholder="Enter your email" >
+              <input type="email" class="form__input" placeholder="Enter your email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
-              <input type="password" class="form__input" placeholder="Enter your password" >
+              <input type="password" class="form__input" placeholder="Enter your password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
             </div>
             <div class="form__forget"><a href="#">Forget password?</a></div>
 
@@ -36,17 +36,17 @@
           <div class="form__wrapper">
             <div class="form__wrap">
               <i class="fas fa-user"></i>
-              <input type="text" class="form__input" placeholder="Enter your name" >
+              <input type="text" class="form__input" placeholder="Enter your name" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
-              <input type="text" class="form__input" placeholder="Enter your email" >
+              <input type="email" class="form__input" placeholder="Enter your email" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
-              <input type="password" class="form__input" placeholder="Enter your password" >
+              <input type="password" class="form__input" placeholder="Enter your password" autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
             </div>
 
 

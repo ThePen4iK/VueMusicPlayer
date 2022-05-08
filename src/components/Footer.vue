@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
-    <div class="footer__wrapper">
-      <div class="album__wrapper" v-if="currentTrack">
+    <div class="footer__wrapper" v-if="currentTrack">
+      <div class="album__wrapper" >
         <div class="album__icon">
-          <div class="album__img"></div>
+          <img class="album__img" v-bind:src="currentTrack.img" alt="album img">
         </div>
         <div class="album__about">
           <p class="album__name">{{ currentTrack.name }}</p>
@@ -21,9 +21,7 @@
         <button class="player__controls-btn" @click="play">
           <svg class="player__controls-play" width="14" height="20">
             <use xlink:href="../../src/assets/sprite.svg#player-play" v-if="isTimerPlaying" ></use>
-
             <use xlink:href="../../src/assets/sprite.svg#player-pause" v-else></use>
-
           </svg>
         </button>
 
@@ -77,7 +75,7 @@ export default {
         {
           name: "Believer",
           artist: "Imagine Dragons",
-          img: require('../assets/music-img/player-icon.jpg'),
+          img: require('../assets/music-img/imagine-dragons.jpg'),
           source: require('../assets/music/ImagineDragons-Believer.mp3'),
         },
         {
@@ -190,9 +188,6 @@ export default {
       vm.nextTrack();
       this.isTimerPlaying = true;
     };
-
-
-
   }
 
 }
@@ -231,6 +226,7 @@ export default {
   &__wrapper{
     display: flex;
     align-items: center;
+    gap: 20px;
   }
   &__img {
     width: 72px;
