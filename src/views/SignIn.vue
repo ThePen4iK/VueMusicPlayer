@@ -103,6 +103,9 @@ import { mapMutations } from "vuex";
 
 export default {
   name: "SignIn",
+  data: () => ({
+
+  }),
   methods: {
     ...mapMutations(["setAuth"]),
     handleSubmit(e){
@@ -111,7 +114,11 @@ export default {
       //запрос(логин), проверка юзера
       this.setAuth(true);
       this.$router.push('/');
-
+    // const response = await axios.post("/auth/users/", {
+    //   email: "user@example.com",
+    //   username: "Jeka",
+    //   password: "unusual1234",
+    // });
 
     }
   },
