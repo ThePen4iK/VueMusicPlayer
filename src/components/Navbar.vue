@@ -20,28 +20,33 @@
         <router-link active-class="active" to="/playlist" class="navbar__link">My Playlist</router-link>
       </li>
       <li class="navbar__item">
-        <a href="#" class="navbar__link">Radio</a>
+        <router-link active-class="active" to="/album" class="navbar__link">album</router-link>
+
       </li>
 
       <li class="navbar__item">
-        <a href="#" class="navbar__link">Podcast</a>
+        <router-link active-class="active" to="/mytrack" class="navbar__link">tracks</router-link>
       </li>
 
-      <li class="navbar__item">
-        <a href="#" class="navbar__link">Downloads</a>
-      </li>
+<!--      <li class="navbar__item">-->
+<!--        <a href="#" class="navbar__link">Podcast</a>-->
+<!--      </li>-->
 
-      <li class="navbar__item">
-        <a href="#" class="navbar__link">Library</a>
-      </li>
+<!--      <li class="navbar__item">-->
+<!--        <a href="#" class="navbar__link">Downloads</a>-->
+<!--      </li>-->
 
-      <li class="navbar__item">
-        <a href="#" class="navbar__link">Language</a>
-      </li>
+<!--      <li class="navbar__item">-->
+<!--        <a href="#" class="navbar__link">Library</a>-->
+<!--      </li>-->
 
-      <li class="navbar__item">
-        <a href="#" class="navbar__link">Settings</a>
-      </li>
+<!--      <li class="navbar__item">-->
+<!--        <a href="#" class="navbar__link">Language</a>-->
+<!--      </li>-->
+
+<!--      <li class="navbar__item">-->
+<!--        <a href="#" class="navbar__link">Settings</a>-->
+<!--      </li>-->
     </ul>
   </nav>
 </template>
@@ -63,6 +68,8 @@ export default {}
   padding: 30px 15px;
   grid-area: nav;
 
+  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+
   &__list {
     padding: 0 15px;
   }
@@ -82,6 +89,7 @@ export default {}
     text-align: left;
     color: #76CCFB;
     transition: all 0.5s ease-in-out;
+    text-transform: capitalize;
   }
 }
 

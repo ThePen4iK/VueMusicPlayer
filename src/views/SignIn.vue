@@ -105,10 +105,14 @@ export default {
   name: "SignIn",
   methods: {
     ...mapMutations(["setAuth"]),
-    handleSubmit(){
+    handleSubmit(e){
+      e.preventDefault();
+      console.log("submit")
       //запрос(логин), проверка юзера
       this.setAuth(true);
-      this.$router.push('/')
+      this.$router.push('/');
+
+
     }
   },
 };
@@ -121,7 +125,7 @@ export default {
   align-items: center;
 
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   &__container {
     width: 100%;

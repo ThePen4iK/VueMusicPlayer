@@ -2,8 +2,10 @@
   <footer class="footer">
     <div class="footer__wrapper" v-if="currentTrack">
       <div class="album__wrapper">
-        <div class="album__icon" :style="testImage">
-          <!-- <img class="album__img" v-bind:src="currentTrack.img" alt="album img"> -->
+<!--        :style="testImage"-->
+
+        <div class="album__icon" >
+           <img class="album__img" v-bind:src="currentTrack.img" alt="album img">
         </div>
         <div class="album__about">
           <p class="album__name">{{ currentTrack.name }}</p>

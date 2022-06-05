@@ -13,6 +13,13 @@
     </div>
     <ul class="header__list">
       <li class="header__item">
+        <!--  microfon -->
+        <svg class="header__icon header__icon--history" width="16" height="22">
+          <use xlink:href="../../src/assets/sprite.svg#micro"></use>
+        </svg>
+      </li>
+
+      <li class="header__item">
         <!--  history -->
         <svg class="header__icon header__icon--history" width="22" height="22">
           <use xlink:href="../../src/assets/sprite.svg#history"></use>

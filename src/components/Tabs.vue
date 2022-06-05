@@ -57,7 +57,7 @@ export default {
 
     &-btn {
       background: #0f1e36;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
 
       font-family: "Source Sans Pro", sans-serif;
       font-size: 20px;
