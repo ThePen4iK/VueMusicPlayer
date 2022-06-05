@@ -19,7 +19,6 @@
 <script>
 import SwiperCarousel from "@/components/SwiperCarousel";
 import Tabs from "@/components/Tabs";
-import axios from "@/api";
 
 export default {
   components: { Tabs, SwiperCarousel },
@@ -80,9 +79,6 @@ export default {
         return !this.activeTab || item.category.includes(this.activeTab);
       });
     },
-  },
-  beforeRouteLeave(to, from) {
-    this.$store.commit("setAuth", false);
   },
   async created() {
   },

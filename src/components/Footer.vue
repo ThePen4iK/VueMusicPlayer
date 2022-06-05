@@ -86,12 +86,14 @@ export default {
       transitionName: null,
       tracks: [
         {
+          id: 0,
           name: "Believer",
           artist: "Imagine Dragons",
           img: require("../assets/music-img/imagine-dragons.jpg"),
           source: require("../assets/music/ImagineDragons-Believer.mp3"),
         },
         {
+          id: 1,
           name: "Heathens",
           artist: "twenty one pilots",
           img: require("../assets/music-img/player-icon.jpg"),

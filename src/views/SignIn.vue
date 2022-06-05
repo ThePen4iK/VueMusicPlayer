@@ -1,49 +1,50 @@
 <template>
   <div class="registration">
     <div class="registration__container">
-      <input type="checkbox" class="registration__flip" id="flip"/>
+      <input type="checkbox" class="registration__flip" id="flip" />
       <div class="registration__cover">
         <div class="registration__front">
           <svg class="registration__icon" width="153" height="202">
             <use
-                xlink:href="../../src/assets/sprite.svg#registration-front"
+              xlink:href="../../src/assets/sprite.svg#registration-front"
             ></use>
           </svg>
         </div>
       </div>
-      <form @submit="handleSubmit" class="form" autocomplete="off">
+      <form @submit.prevent class="form" autocomplete="off">
         <div class="form__auth">
           <h1 class="form__title">Login</h1>
           <div class="form__wrapper">
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
               <input
-                  v-model="email"
-                  type="email"
-                  class="form__input"
-                  placeholder="Enter your email"
-                  autocomplete="off"
-                  readonly
-                  onfocus="this.removeAttribute('readonly')"
-
+                v-model="login"
+                type="email"
+                class="form__input"
+                placeholder="Enter your username"
+                autocomplete="off"
+                readonly
+                onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
               <input
-                  v-model="password"
-                  type="password"
-                  class="form__input"
-                  placeholder="Enter your password"
-                  autocomplete="off"
-                  readonly
-                  onfocus="this.removeAttribute('readonly')"
+                v-model="password"
+                type="password"
+                class="form__input"
+                placeholder="Enter your password"
+                autocomplete="off"
+                readonly
+                onfocus="this.removeAttribute('readonly')"
               />
             </div>
             <div class="form__forget"><a href="#">Forget password?</a></div>
 
-            <button class="form__btn" type="submit">Sumbit</button>
+            <button class="form__btn" type="submit" @click="handleLogin">
+              Sumbit
+            </button>
 
             <div class="form__text">
               Don't have an account <label for="flip">Signup now</label>
@@ -57,45 +58,45 @@
             <div class="form__wrap">
               <i class="fas fa-user"></i>
               <input
-                  v-model="login"
-
-                  type="text"
-                  class="form__input"
-                  placeholder="Enter your name"
-                  autocomplete="off"
-                  readonly
-                  onfocus="this.removeAttribute('readonly')"
+                v-model="login"
+                type="text"
+                class="form__input"
+                placeholder="Enter your name"
+                autocomplete="off"
+                readonly
+                onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
               <input
-                  v-model="email"
-
-                  type="email"
-                  class="form__input"
-                  placeholder="Enter your email"
-                  autocomplete="off"
-                  readonly
-                  onfocus="this.removeAttribute('readonly')"
+                v-model="email"
+                type="email"
+                class="form__input"
+                placeholder="Enter your email"
+                autocomplete="off"
+                readonly
+                onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
               <input
-                  v-model="password"
-                  type="password"
-                  class="form__input"
-                  placeholder="Enter your password"
-                  autocomplete="off"
-                  readonly
-                  onfocus="this.removeAttribute('readonly')"
+                v-model="password"
+                type="password"
+                class="form__input"
+                placeholder="Enter your password"
+                autocomplete="off"
+                readonly
+                onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
-            <button class="form__btn" type="submit">Sumbit</button>
+            <button class="form__btn" type="submit" @click="handleSignup">
+              Sumbit
+            </button>
             <div class="form__text">
               Already have an account <label for="flip"> Login now</label>
             </div>
@@ -107,44 +108,39 @@
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import { mapMutations, mapActions } from "vuex";
 
 export default {
   name: "SignIn",
   data: () => ({
-    email: '',
-    login: '',
-    password: '',
-    first_name: '',
+    email: "",
+    login: "",
+    password: "",
   }),
   methods: {
     ...mapMutations(["setAuth"]),
-    handleSubmit(e) {
-      e.preventDefault();
-      console.log("submit")
-      //запрос(логин), проверка юзера
-      this.setAuth(true);
-      this.$router.push('/');
-    // const response = await axios.post("/auth/users/", {
-    //   email: "user@example.com",
-    //   username: "Jeka",
-    //   password: "unusual1234",
-    // });
-
+    ...mapActions(["signUp", "signIn", "getUserData"]),
+    handleLogin() {
+      this.signIn({ username: this.login, password: this.password })
+        .then(() => {
+          this.getUserData();
+          this.$router.push("/");
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    handleLogin(){
-      const data = {
+    handleSignup() {
+      this.signUp({
         email: this.email,
-        password: this.password
-      }
+        username: this.login,
+        password: this.password,
+      }).then((resp) => {
+        this.handleLogin({ username: resp.username, password: this.password })
+      }).catch(e => {
+        console.log(e);
+      });
     },
-    handleSignup(){
-      const data = {
-        login: this.login,
-        email: this.email,
-        password: this.password
-      }
-    }
   },
 };
 </script>

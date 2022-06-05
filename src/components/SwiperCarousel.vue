@@ -9,22 +9,9 @@
         @swiper="onSwiper"
         @slideChange="onSlideChange"
     >
-      <swiper-slide class="slider__slide">
-        <img class="slider__img" src="../assets/album-1.jpg" alt="1" />
+      <swiper-slide class="slider__slide" v-for="album in albums" :key="album.id" @click="$router.push({name: 'Album', params: {id: album.id}})">
+        <img class="slider__img" :src="album.img" alt="1" />
       </swiper-slide>
-      <swiper-slide class="slider__slide">
-        <img class="slider__img" src="../assets/album-2.jpg" alt="2" />
-      </swiper-slide>
-      <swiper-slide class="slider__slide">
-        <img class="slider__img" src="../assets/album-3.jpg" alt="3" />
-      </swiper-slide>
-
-      <swiper-slide class="slider__slide">
-        <img class="slider__img" src="../assets/album-5.jpg" alt="5" />
-      </swiper-slide>
-<!--      <swiper-slide class="slider__slide">-->
-<!--        <img class="slider__img" src="../assets/slide-1.jpg" alt="4" />-->
-<!--      </swiper-slide>-->
 
     </swiper>
   </section>
@@ -32,6 +19,7 @@
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
+import {reactive} from 'vue';
 
 // Import Swiper styles
 import "swiper/swiper-bundle.min.css";
@@ -48,9 +36,30 @@ export default {
     const onSlideChange = () => {
       console.log("slide change");
     };
+
+    const albums = reactive([
+      {
+        id: 0,
+        img: require('@/assets/album-1.jpg')
+      },
+            {
+        id: 1,
+        img: require('@/assets/album-2.jpg')
+      },
+            {
+        id: 2,
+        img: require('@/assets/album-3.jpg')
+      },
+            {
+        id: 3,
+        img: require('@/assets/album-5.jpg')
+      }
+    ])
+
     return {
       onSwiper,
       onSlideChange,
+      albums
     };
   },
 };

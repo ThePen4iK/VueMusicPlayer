@@ -4,7 +4,7 @@
   <!--    <router-link to="/about">About</router-link>-->
   <!--  </div>-->
   <!--  <router-view/>-->
-  <div class="app" v-if="$route.path !=='/signin'">
+  <div class="app" v-if="$route.path !== '/signin'">
     <Navbar></Navbar>
     <Header></Header>
 
@@ -24,7 +24,7 @@ import Navbar from "@/components/Navbar";
 import Main from "@/views/Main";
 import Footer from "@/components/Footer";
 
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -35,6 +35,14 @@ export default {
   },
   computed: {
     ...mapState(["isAuth"]),
+  },
+  methods: {
+    ...mapMutations(["setAuth"]),
+  },
+  mounted() {
+    if (localStorage.getItem("token")) {
+      this.setAuth(true);
+    }
   },
 };
 </script>

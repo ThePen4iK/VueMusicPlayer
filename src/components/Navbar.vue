@@ -9,6 +9,7 @@
 
       <div class="user__wrapper">
         <router-link to="/signin" class="user__btn " >Sign in</router-link>
+       <button @click="logout">Logout</button>
       </div>
     </div>
 
@@ -16,12 +17,11 @@
       <li class="navbar__item">
         <router-link active-class="active" to="/" class="navbar__link">Home</router-link>
       </li>
-      <li class="navbar__item">
-        <router-link active-class="active" to="/playlist" class="navbar__link">My Playlist</router-link>
+      <li class="navbar__item" >
+        <router-link active-class="active" to="/playlist" class="navbar__link" :class="{disabled: !isAuth}">My Playlist</router-link>
       </li>
       <li class="navbar__item">
         <router-link active-class="active" to="/album" class="navbar__link">album</router-link>
-
       </li>
 
       <li class="navbar__item">
@@ -52,10 +52,29 @@
 </template>
 
 <script>
-export default {}
+import {mapState, mapMutations} from 'vuex';
+export default {
+  methods:{
+        ...mapMutations(["setAuth"]),
+    logout(){
+      localStorage.removeItem('token');
+      this.$router.push('/signin')
+      this.setAuth(false);
+    }
+  },
+  computed:{
+    ...mapState('isAuth')
+  }
+}
 </script>
 
 <style scoped lang="scss">
+.disabled{
+  cursor: not-allowed;
+  color: crimson;
+}
+
+
 .navbar {
   display: flex;
   flex-direction: column;
