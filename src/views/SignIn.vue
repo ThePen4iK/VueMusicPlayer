@@ -1,12 +1,12 @@
 <template>
   <div class="registration">
     <div class="registration__container">
-      <input type="checkbox" class="registration__flip" id="flip" />
+      <input type="checkbox" class="registration__flip" id="flip"/>
       <div class="registration__cover">
         <div class="registration__front">
           <svg class="registration__icon" width="153" height="202">
             <use
-              xlink:href="../../src/assets/sprite.svg#registration-front"
+                xlink:href="../../src/assets/sprite.svg#registration-front"
             ></use>
           </svg>
         </div>
@@ -18,24 +18,27 @@
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
               <input
-                type="email"
-                class="form__input"
-                placeholder="Enter your email"
-                autocomplete="off"
-                readonly
-                onfocus="this.removeAttribute('readonly')"
+                  v-model="email"
+                  type="email"
+                  class="form__input"
+                  placeholder="Enter your email"
+                  autocomplete="off"
+                  readonly
+                  onfocus="this.removeAttribute('readonly')"
+
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
               <input
-                type="password"
-                class="form__input"
-                placeholder="Enter your password"
-                autocomplete="off"
-                readonly
-                onfocus="this.removeAttribute('readonly')"
+                  v-model="password"
+                  type="password"
+                  class="form__input"
+                  placeholder="Enter your password"
+                  autocomplete="off"
+                  readonly
+                  onfocus="this.removeAttribute('readonly')"
               />
             </div>
             <div class="form__forget"><a href="#">Forget password?</a></div>
@@ -54,36 +57,41 @@
             <div class="form__wrap">
               <i class="fas fa-user"></i>
               <input
-                type="text"
-                class="form__input"
-                placeholder="Enter your name"
-                autocomplete="off"
-                readonly
-                onfocus="this.removeAttribute('readonly')"
+                  v-model="login"
+
+                  type="text"
+                  class="form__input"
+                  placeholder="Enter your name"
+                  autocomplete="off"
+                  readonly
+                  onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-envelope"></i>
               <input
-                type="email"
-                class="form__input"
-                placeholder="Enter your email"
-                autocomplete="off"
-                readonly
-                onfocus="this.removeAttribute('readonly')"
+                  v-model="email"
+
+                  type="email"
+                  class="form__input"
+                  placeholder="Enter your email"
+                  autocomplete="off"
+                  readonly
+                  onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
             <div class="form__wrap">
               <i class="fas fa-lock"></i>
               <input
-                type="password"
-                class="form__input"
-                placeholder="Enter your password"
-                autocomplete="off"
-                readonly
-                onfocus="this.removeAttribute('readonly')"
+                  v-model="password"
+                  type="password"
+                  class="form__input"
+                  placeholder="Enter your password"
+                  autocomplete="off"
+                  readonly
+                  onfocus="this.removeAttribute('readonly')"
               />
             </div>
 
@@ -99,13 +107,19 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import {mapMutations} from "vuex";
 
 export default {
   name: "SignIn",
+  data: () => ({
+    email: '',
+    login: '',
+    password: '',
+    first_name: '',
+  }),
   methods: {
     ...mapMutations(["setAuth"]),
-    handleSubmit(e){
+    handleSubmit(e) {
       e.preventDefault();
       console.log("submit")
       //запрос(логин), проверка юзера
@@ -113,7 +127,21 @@ export default {
       this.$router.push('/');
 
 
+    },
+    handleLogin(){
+      const data = {
+        email: this.email,
+        password: this.password
+      }
+    },
+    handleSignup(){
+      const data = {
+        login: this.login,
+        email: this.email,
+        password: this.password
+      }
     }
+
   },
 };
 </script>
@@ -141,6 +169,7 @@ export default {
     perspective: 2700px;
     //box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
+
   &__cover {
     position: absolute;
     top: 0;
@@ -161,6 +190,7 @@ export default {
       opacity: 1;
     }
   }
+
   &__icon {
     position: absolute;
     top: 50%;
@@ -169,13 +199,16 @@ export default {
     color: #7d2ae8;
     backface-visibility: hidden;
   }
+
   &__flip:checked ~ .registration__cover {
     transform: rotateY(-180deg);
   }
+
   &__flip {
     display: none;
   }
 }
+
 .form {
   display: flex;
   justify-content: space-between;
@@ -280,6 +313,7 @@ export default {
       }
     }
   }
+
   &__forget {
     display: inline-block;
     font-family: " Source Sans Pro", sans-serif;
@@ -296,6 +330,7 @@ export default {
       }
     }
   }
+
   &__text {
     margin-top: 10px;
     font-family: "Source Sans Pro", sans-serif;
@@ -304,6 +339,7 @@ export default {
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
+
     & label {
       color: #5b13b7;
       cursor: pointer;
