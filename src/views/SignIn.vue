@@ -125,7 +125,11 @@ export default {
       //запрос(логин), проверка юзера
       this.setAuth(true);
       this.$router.push('/');
-
+    // const response = await axios.post("/auth/users/", {
+    //   email: "user@example.com",
+    //   username: "Jeka",
+    //   password: "unusual1234",
+    // });
 
     },
     handleLogin(){
@@ -141,7 +145,6 @@ export default {
         password: this.password
       }
     }
-
   },
 };
 </script>
@@ -169,7 +172,6 @@ export default {
     perspective: 2700px;
     //box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   }
-
   &__cover {
     position: absolute;
     top: 0;
@@ -190,7 +192,6 @@ export default {
       opacity: 1;
     }
   }
-
   &__icon {
     position: absolute;
     top: 50%;
@@ -199,16 +200,13 @@ export default {
     color: #7d2ae8;
     backface-visibility: hidden;
   }
-
   &__flip:checked ~ .registration__cover {
     transform: rotateY(-180deg);
   }
-
   &__flip {
     display: none;
   }
 }
-
 .form {
   display: flex;
   justify-content: space-between;
@@ -313,7 +311,6 @@ export default {
       }
     }
   }
-
   &__forget {
     display: inline-block;
     font-family: " Source Sans Pro", sans-serif;
@@ -330,7 +327,6 @@ export default {
       }
     }
   }
-
   &__text {
     margin-top: 10px;
     font-family: "Source Sans Pro", sans-serif;
@@ -339,7 +335,6 @@ export default {
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
-
     & label {
       color: #5b13b7;
       cursor: pointer;
